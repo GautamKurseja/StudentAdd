@@ -1,0 +1,188 @@
+<div id="top_nav" style="padding-top: 2%; background: skyblue; padding-bottom: 2%">
+  <h3 style="margin-left: 5%;">Add Student</h3>
+</div>
+
+<div class="container">
+  <form [formGroup]="employeeAddForm">
+    <br />
+    <div class="row">
+      <div class="col-xs-6 col-md-6 col-sm-12">
+        <div>
+          <mat-label>Email<span style="color: red">*</span></mat-label>
+        </div>
+
+        <input type="email" class="form-control" placeholder="Email" formControlName="email" />
+
+        
+        <div class="errDiv">
+          <p padding-left ion-text color="danger" *ngIf="employeeAddForm.controls['email'].hasError('required')  &&  isFormInvalid  ||
+          employeeAddForm.controls['email'].touched  &&  employeeAddForm.controls['email'].hasError('required')">
+            Email is required
+          </p>
+        </div>
+        <div class="errDiv">
+          <p padding-left ion-text color="danger"
+            *ngIf="(employeeAddForm.controls['email'].hasError('email') && employeeAddForm.controls['email'].dirty) ">
+            Invalid Email Id
+          </p>
+        </div>
+      </div>
+
+
+
+
+
+
+      <div class="col-xs-6 col-md-6">
+        <div>
+          <mat-label>Student Group <span style="color: red">*</span></mat-label>
+        </div>
+
+        <!-- <mat-label>Choose an option</mat-label> -->
+        <mat-select formControlName="studentGroup" class="form-control"  placeholder="Student Group" formControlName="studentGroup">
+          <mat-option value="option1">A</mat-option>
+          <mat-option value="option3">B</mat-option>
+          <mat-option value="option1">c</mat-option>
+          <mat-option value="option3">D</mat-option>
+        </mat-select>
+
+        <div class="errDiv">
+          <p padding-left ion-text color="danger" *ngIf="
+          employeeAddForm.controls['studentGroup'].hasError('required')  &&  isFormInvalid  ||
+          employeeAddForm.controls['studentGroup'].touched  &&  employeeAddForm.controls['studentGroup'].hasError('required')
+           ">
+            Stundent Group is required
+          </p>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-xs-6 col-md-6">
+        <div>
+          <mat-label>Name <span style="color: red">*</span></mat-label>
+        </div>
+
+        <input type="text" class="form-control" placeholder="Name" formControlName="name" />
+
+        <div class="errDiv">
+          <p padding-left ion-text color="danger" *ngIf="
+          employeeAddForm.controls['name'].hasError('required')  &&  isFormInvalid  ||
+          employeeAddForm.controls['name'].touched  &&  employeeAddForm.controls['name'].hasError('required')
+           ">
+            Full Name is required
+          </p>
+        </div>
+      </div>
+      <div class="col-xs-6 col-md-6">
+        <div>
+          <mat-label>Password<span style="color: red">*</span></mat-label>
+        </div>
+        <input type="password" class="form-control" placeholder="Password" formControlName="password" />
+        <div class="errDiv">
+          <p padding-left ion-text color="danger" *ngIf="
+          employeeAddForm.controls['password'].hasError('required')  &&  isFormInvalid  ||
+          employeeAddForm.controls['password'].touched  &&  employeeAddForm.controls['password'].hasError('required')
+           ">
+            Password is required
+          </p>
+        </div>
+
+
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        <div>
+          <mat-label>Address <span style="color: red">*</span></mat-label>
+        </div>
+
+        <input type="text" class="form-control" placeholder="Address" formControlName="address" />
+        <div class="errDiv">
+          <p padding-left ion-text color="danger" *ngIf="employeeAddForm.controls['address'].hasError('required')  &&  isFormInvalid  ||
+            employeeAddForm.controls['address'].touched  &&  employeeAddForm.controls['address'].hasError('required')">
+            Address is required
+          </p>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-xs-6 col-md-6">
+        <div>
+          <mat-label>Phone No <span style="color: red">*</span></mat-label>
+        </div>
+
+        <input type="number" class="form-control" placeholder="Phone No" formControlName="phone" />
+
+        <div class="errDiv">
+          <p padding-left ion-text color="danger" *ngIf="employeeAddForm.controls['phone'].hasError('required')  &&  isFormInvalid  ||
+          employeeAddForm.controls['phone'].touched  &&  employeeAddForm.controls['phone'].hasError('required')">
+            Mobile Number is required
+          </p>
+        </div>
+      </div>
+      <div class="col-xs-6 col-md-6">
+        <div>
+          <mat-label>Guardian No</mat-label>
+        </div>
+        <input type="number" class="form-control" placeholder="Guardian No" formControlName="guardianPhone" />
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-xs-6 col-md-6">
+        <div>
+          <mat-label>Enrolment Number</mat-label>
+        </div>
+
+        <input type="text" class="form-control" placeholder="Enrolment Number" formControlName="enrolmentNumber" />
+      </div>
+      <div class="col-xs-6 col-md-6">
+        <div>
+          <mat-label>Status</mat-label>
+        </div>
+
+        <!-- <mat-label>Choose an option</mat-label> -->
+        <mat-select class="form-control" formControlName="status" placeholder="status">
+          <mat-option value="Active">Active</mat-option>
+          <mat-option value="In Active">In Active</mat-option>
+        </mat-select>
+      </div>
+    </div>
+    <br />
+
+
+    <div class="row" >
+      <mat-label>    Upload Image <span style="color: red">*</span></mat-label>
+    <div (click)="filePicker.click()" class="form-control">Browse...
+      <!-- <button mat-stroked-button type="button" (click)="filePicker.click()">Upload Image</button> -->
+      <input type="file" #filePicker (change)="onImagePicked($event)">
+    </div>
+    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && employeeAddForm.get('image').valid">
+      <img [src]="imagePreview" [alt]="employeeAddForm.value.title">
+    </div>
+    <div>
+
+      <div class="errDiv">
+        <p padding-left ion-text color="danger" *ngIf="employeeAddForm.controls['image'].hasError('required')  &&  isFormInvalid  ||
+          employeeAddForm.controls['image'].touched  &&  employeeAddForm.controls['image'].hasError('required')">
+          Image is required
+        </p>
+      </div>
+      </div>
+      <br>
+      <span style="margin-left: 30%;">
+      <button mat-raised-button color="success"  (click)="onFormSubmit(employeeAddForm.value)">
+        <mat-icon>add</mat-icon>
+        Save
+      </button>
+      <button mat-raised-button color="warn" (click)="reset()" style="margin-left: 10px;">
+        <mat-icon>close</mat-icon>
+        Close
+      </button>
+      </span>
+    </div>
+  </form>
+</div>
